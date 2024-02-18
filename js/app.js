@@ -1,3 +1,4 @@
+const host = 'http://fm';
 const app = Vue.createApp({
     data() {
         return {
@@ -25,8 +26,6 @@ const app = Vue.createApp({
                 file_id: null
             },
             usersAccess: []
-
-
         }
     },
     mounted() {
@@ -54,7 +53,7 @@ const app = Vue.createApp({
                 body: raw,
             };
 
-            fetch("http://fm/registration", requestOptions)
+            fetch(host + "/registration", requestOptions)
                 .then((response) => response.json())
                 .then((result) => {
 
@@ -79,7 +78,7 @@ const app = Vue.createApp({
                 redirect: "follow"
             };
 
-            fetch("http://fm/authorization", requestOptions)
+            fetch(host + "/authorization", requestOptions)
                 .then((response) => response.json())
                 .then((result) => {
 
@@ -105,7 +104,7 @@ const app = Vue.createApp({
                 redirect: "follow"
             };
 
-            fetch("http://fm/logout", requestOptions)
+            fetch(host + "/logout", requestOptions)
                 .then((response) => response.json())
                 .then((result) => {
 
@@ -139,7 +138,7 @@ const app = Vue.createApp({
                 redirect: "follow"
             };
 
-            fetch("http://fm/files", requestOptions)
+            fetch(host + "/files", requestOptions)
                 .then((response) => response.json())
                 .then((result) => {
                     message = [];
@@ -161,7 +160,7 @@ const app = Vue.createApp({
                 redirect: "follow"
             };
 
-            fetch("http://fm/files/disk", requestOptions)
+            fetch(host + "/files/disk", requestOptions)
                 .then((response) => response.json())
                 .then((result) => {
                     this.myFiles = result;
@@ -178,7 +177,7 @@ const app = Vue.createApp({
                 redirect: "follow"
             };
 
-            fetch("http://fm/files/shared", requestOptions)
+            fetch(host + "/files/shared", requestOptions)
                 .then((response) => response.json())
                 .then((result) => {
                     this.myAccesses = result;
@@ -196,7 +195,7 @@ const app = Vue.createApp({
                 redirect: "follow"
             };
 
-            fetch("http://fm/files/" + fileId, requestOptions)
+            fetch(host + "/files/" + fileId, requestOptions)
                 .then((response) => response.json())
                 .then((result) => {
                     this.message = message;
@@ -215,7 +214,7 @@ const app = Vue.createApp({
                 redirect: "follow"
             };
 
-            fetch("http://fm/files/" + fileId, requestOptions)
+            fetch(host + "/files/" + fileId, requestOptions)
                 .then((response) => response.blob())
                 .then((blob) => {
                     const url = window.URL.createObjectURL(blob);
@@ -255,7 +254,7 @@ const app = Vue.createApp({
                 redirect: "follow"
             };
 
-            fetch("http://fm/files/" + this.readFile.file_id, requestOptions)
+            fetch(host + "/files/" + this.readFile.file_id, requestOptions)
                 .then((response) => response.json())
                 .then((result) => {
                     this.message = result.message;
@@ -276,7 +275,7 @@ const app = Vue.createApp({
                 redirect: "follow"
             };
 
-            fetch("http://fm/files/disk", requestOptions)
+            fetch(host + "/files/disk", requestOptions)
                 .then((response) => response.json())
                 .then((result) => {
                     const item = result.find((elem) => elem.file_id === file_id);
@@ -284,10 +283,7 @@ const app = Vue.createApp({
                     this.usersAccess = item.access;
                     this.openPage('editAccess');
                 })
-
         },
-
-
     },
 }).mount('#app');
 
